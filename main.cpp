@@ -150,7 +150,7 @@ int main()
 
 	// Assimp
 	//C:\Users\Giovane\Downloads\backpack - Copy
-	Model ourModel("models/free-1975-porsche-911-930-turbo/source/911_scene.blend");
+	Model ourModel("models/obama_prism/scene.gltf");
 	//	Model ourModel("C:/Users/Giovane/Desktop/Workspace 2023/OpenGL/OpenGLFirstProject/resources/objects/backpack/backpack.obj");
 	while (!glfwWindowShouldClose(window))
 	{

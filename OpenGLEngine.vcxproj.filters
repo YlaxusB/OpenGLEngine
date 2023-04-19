@@ -27,6 +27,15 @@
     <ClCompile Include="glad.c">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
@@ -55,5 +64,6 @@
     <None Include="vertexShader.glsl">
       <Filter>Shader Files</Filter>
     </None>
+    <None Include="..\..\..\..\..\..\OpenGL\lib\assimp-vc143-mtd.dll" />
   </ItemGroup>
 </Project>

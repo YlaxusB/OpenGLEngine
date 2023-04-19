@@ -30,7 +30,7 @@ class Model
 
 
 public:
-	unsigned int TextureFromFileBAC(const char* path, const string& directory, bool gamma)
+	unsigned int TextureFromFile(const char* path, const string& directory, bool gamma)
 	{
 		string filename = string(path);
 		filename = "/" + filename;
@@ -234,7 +234,7 @@ private:
 			if (!skip)
 			{   // if texture hasn't been loaded already, load it
 				Texture texture;
-				texture.id = TextureFromFileBAC(str.C_Str(), this->directory, false);
+				texture.id = TextureFromFile(str.C_Str(), this->directory, false);
 				texture.type = typeName;
 				texture.path = str.C_Str();
 				textures.push_back(texture);
