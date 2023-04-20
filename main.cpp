@@ -152,6 +152,53 @@ int main()
 	//C:\Users\Giovane\Downloads\backpack - Copy
 	Model ourModel("models/obama_prism/scene.gltf");
 	//	Model ourModel("C:/Users/Giovane/Desktop/Workspace 2023/OpenGL/OpenGLFirstProject/resources/objects/backpack/backpack.obj");
+
+	float vertices[] = {
+	-0.5f, -0.5f, -0.5f,
+	 0.5f, -0.5f, -0.5f,
+	 0.5f,  0.5f, -0.5f,
+	 0.5f,  0.5f, -0.5f,
+	-0.5f,  0.5f, -0.5f,
+	-0.5f, -0.5f, -0.5f,
+
+	-0.5f, -0.5f,  0.5f,
+	 0.5f, -0.5f,  0.5f,
+	 0.5f,  0.5f,  0.5f,
+	 0.5f,  0.5f,  0.5f,
+	-0.5f,  0.5f,  0.5f,
+	-0.5f, -0.5f,  0.5f,
+
+	-0.5f,  0.5f,  0.5f,
+	-0.5f,  0.5f, -0.5f,
+	-0.5f, -0.5f, -0.5f,
+	-0.5f, -0.5f, -0.5f,
+	-0.5f, -0.5f,  0.5f,
+	-0.5f,  0.5f,  0.5f,
+
+	 0.5f,  0.5f,  0.5f,
+	 0.5f,  0.5f, -0.5f,
+	 0.5f, -0.5f, -0.5f,
+	 0.5f, -0.5f, -0.5f,
+	 0.5f, -0.5f,  0.5f,
+	 0.5f,  0.5f,  0.5f,
+
+	-0.5f, -0.5f, -0.5f,
+	 0.5f, -0.5f, -0.5f,
+	 0.5f, -0.5f,  0.5f,
+	 0.5f, -0.5f,  0.5f,
+	-0.5f, -0.5f,  0.5f,
+	-0.5f, -0.5f, -0.5f,
+
+	-0.5f,  0.5f, -0.5f,
+	 0.5f,  0.5f, -0.5f,
+	 0.5f,  0.5f,  0.5f,
+	 0.5f,  0.5f,  0.5f,
+	-0.5f,  0.5f,  0.5f,
+	-0.5f,  0.5f, -0.5f
+	};
+
+	glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
+
 	while (!glfwWindowShouldClose(window))
 	{
 		float currentFrame = static_cast<float>(glfwGetTime());
@@ -161,6 +208,10 @@ int main()
 
 		// input
 		// -----
+
+		// don't forget to use the corresponding shader program first (to set the uniform)
+
+
 
 		processInput(window);
 
@@ -173,6 +224,11 @@ int main()
 
 		// don't forget to enable shader before setting uniforms
 		ourShader.use();
+
+		//ourShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
+		unsigned int lightColor = glGetUniformLocation(ourShader.ID, "lightColor");
+		glm::vec4 light = glm::vec4(0.1, 0.1, 0.1, 0.1);
+		glUniformMatrix4fv(lightColor, 1, GL_FALSE, &light[0]);
 
 		// view/projection transformations
 		glm::mat4 projection = glm::perspective(glm::radians(fov), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);

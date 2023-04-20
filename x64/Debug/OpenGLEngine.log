@@ -1,11 +1,1 @@
-﻿  Model.cpp
-  main.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\filesystem(13): warning STL4038: The contents of <filesystem> are available only with C++17 or later.
-C:\Users\Giovane\Desktop\Workspace 2023\OpenGL\OpenGLEngine\main.cpp(57,11): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Giovane\Desktop\Workspace 2023\OpenGL\OpenGLEngine\main.cpp(58,11): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Giovane\Desktop\Workspace 2023\OpenGL\OpenGLEngine\main.cpp(62,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Giovane\Desktop\Workspace 2023\OpenGL\OpenGLEngine\main.cpp(63,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Giovane\Desktop\Workspace 2023\OpenGL\OpenGLEngine\main.cpp(64,10): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Giovane\Desktop\Workspace 2023\OpenGL\OpenGLEngine\main.cpp(65,10): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  Generating Code...
-  OpenGLEngine.vcxproj -> C:\Users\Giovane\Desktop\Workspace 2023\OpenGL\OpenGLEngine\x64\Debug\OpenGLEngine.exe
+﻿  OpenGLEngine.vcxproj -> C:\Users\Giovane\Desktop\Workspace 2023\OpenGL\OpenGLEngine\x64\Debug\OpenGLEngine.exe
