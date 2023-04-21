@@ -145,16 +145,22 @@
     <ClCompile Include="stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="fileSystem.h" />
     <ClInclude Include="glad.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="Shader_m.h" />
     <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\..\..\OpenGL\lib\assimp-vc143-mtd.dll" />
+    <None Include="colorFragment.glsl" />
+    <None Include="colorVertex.glsl" />
     <None Include="fragmentShader.glsl" />
+    <None Include="light_cubeFragment.glsl" />
+    <None Include="light_cubeVertex.glsl" />
     <None Include="vertexShader.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

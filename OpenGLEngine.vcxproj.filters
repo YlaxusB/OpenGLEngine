@@ -56,6 +56,12 @@
     <ClInclude Include="glad.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader_m.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="fragmentShader.glsl">
@@ -65,5 +71,17 @@
       <Filter>Shader Files</Filter>
     </None>
     <None Include="..\..\..\..\..\..\OpenGL\lib\assimp-vc143-mtd.dll" />
+    <None Include="colorVertex.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="colorFragment.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="light_cubeVertex.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="light_cubeFragment.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
