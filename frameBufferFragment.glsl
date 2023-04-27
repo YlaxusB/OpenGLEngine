@@ -37,5 +37,5 @@ float kernel[9] = float[](
     for(int i = 0; i < 9; i++)
         col += sampleTex[i] * kernel[i];
     
-    FragColor = vec4(col, 1.0) * vec4(0.3,0.4,0.5,1);
+    FragColor = vec4(texture(screenTexture, TexCoords.st));
 }  

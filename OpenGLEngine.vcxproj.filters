@@ -92,5 +92,11 @@
     <None Include="frameBufferFragment.glsl">
       <Filter>Shader Files</Filter>
     </None>
+    <None Include="skyboxVertex.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="skyboxFragment.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
