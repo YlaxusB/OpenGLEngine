@@ -86,5 +86,11 @@
     <None Include="singleColorFragment.glsl">
       <Filter>Shader Files</Filter>
     </None>
+    <None Include="frameBufferVertex.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="frameBufferFragment.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
