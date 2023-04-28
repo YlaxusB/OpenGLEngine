@@ -98,5 +98,17 @@
     <None Include="skyboxFragment.glsl">
       <Filter>Shader Files</Filter>
     </None>
+    <None Include="geometryShaders.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="normalVisualizationVertex.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="normalVisualizationFragment.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="normalVisualizationGeometry.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

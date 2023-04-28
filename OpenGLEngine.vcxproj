@@ -161,8 +161,12 @@
     <None Include="colorFragment.glsl" />
     <None Include="colorVertex.glsl" />
     <None Include="fragmentShader.glsl" />
+    <None Include="geometryShaders.glsl" />
     <None Include="light_cubeFragment.glsl" />
     <None Include="light_cubeVertex.glsl" />
+    <None Include="normalVisualizationFragment.glsl" />
+    <None Include="normalVisualizationGeometry.glsl" />
+    <None Include="normalVisualizationVertex.glsl" />
     <None Include="singleColorFragment.glsl" />
     <None Include="skyboxFragment.glsl" />
     <None Include="skyboxVertex.glsl" />
