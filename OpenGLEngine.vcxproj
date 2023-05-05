@@ -156,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\..\..\OpenGL\lib\assimp-vc143-mtd.dll" />
+    <None Include="floorShaderVertex.glsl" />
     <None Include="frameBufferFragment.glsl" />
     <None Include="frameBufferVertex.glsl" />
     <None Include="colorFragment.glsl" />

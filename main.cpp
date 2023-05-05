@@ -42,7 +42,7 @@ float lastFrame = 0.0f;
 // lighting
 glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
 
-unsigned int loadTexture(char const* path)
+unsigned int loadTexture(char const* path, bool gammaCorrection)
 {
     unsigned int textureID;
     glGenTextures(1, &textureID);
@@ -52,16 +52,24 @@ unsigned int loadTexture(char const* path)
     unsigned char* data = stbi_load(path, &width, &height, &nrComponents, 0);
     if (data)
     {
-        GLenum format;
+        GLenum internalFormat;
+        GLenum dataFormat;
         if (nrComponents == 1)
-            format = GL_RED;
+        {
+            internalFormat = dataFormat = GL_RED;
+        }
         else if (nrComponents == 3)
-            format = GL_RGB;
+        {
+            internalFormat = gammaCorrection ? GL_SRGB : GL_RGB;
+            dataFormat = GL_RGB;
+        }
         else if (nrComponents == 4)
-            format = GL_RGBA;
-
+        {
+            internalFormat = gammaCorrection ? GL_SRGB_ALPHA : GL_RGBA;
+            dataFormat = GL_RGBA;
+        }
         glBindTexture(GL_TEXTURE_2D, textureID);
-        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+        glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, dataFormat, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
 
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -123,20 +131,24 @@ int main()
     // -----------------------------
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_MULTISAMPLE);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     Shader shader("vertexShader.glsl", "fragmentShader.glsl");
-
+    Shader floorShader("floorShaderVertex.glsl", "fragmentShader.glsl");
     Shader normalShader("normalVisualizationVertex.glsl", "normalVisualizationFragment.glsl", "normalVisualizationGeometry.glsl");
     stbi_set_flip_vertically_on_load(true);
-    Model backpack("models/rock/rock.obj");
+    Model backpack("models/rock/rock.obj", true);
 
     // --------------------
     shader.use();
     shader.setInt("texture1", 0);
+    //floorShader.use();
+    floorShader.setInt("floorTexture", 0);
 
+    unsigned int cubeTexture = loadTexture("textures/marble.jpg", true);
+    unsigned int floorTexture = loadTexture("textures/wood.png", true);
 
-    unsigned int cubeTexture = loadTexture("textures/marble.jpg");
-    unsigned int floorTexture = loadTexture("textures/metal.png");
-
+    
     // Instanced rendering
     unsigned int amount = 100000;
     glm::mat4* modelMatrices;
@@ -196,6 +208,45 @@ int main()
         glBindVertexArray(0);
     }
 
+    
+    glm::vec3 lightPositions[] = {
+        glm::vec3(-3.0f, 0.0f, 0.0f),
+        glm::vec3(-1.0f, 0.0f, 0.0f),
+        glm::vec3(1.0f, 0.0f, 0.0f),
+        glm::vec3(3.0f, 0.0f, 0.0f)
+    };
+    glm::vec3 lightColors[] = {
+        glm::vec3(0.25),
+        glm::vec3(0.50),
+        glm::vec3(0.75),
+        glm::vec3(1.00)
+    };
+
+    // Plane
+    float planeVertices[] = {
+        // positions            // normals         // texcoords
+         100.0f, -0.5f,  100.0f,  0.0f, 1.0f, 0.0f,  10.0f,  0.0f,
+        -100.0f, -0.5f,  100.0f,  0.0f, 1.0f, 0.0f,   0.0f,  0.0f,
+        -100.0f, -0.5f, -100.0f,  0.0f, 1.0f, 0.0f,   0.0f, 10.0f,
+
+         100.0f, -0.5f,  100.0f,  0.0f, 1.0f, 0.0f,  10.0f,  0.0f,
+        -100.0f, -0.5f, -100.0f,  0.0f, 1.0f, 0.0f,   0.0f, 10.0f,
+         100.0f, -0.5f, -100.0f,  0.0f, 1.0f, 0.0f,  10.0f, 10.0f
+    };
+    // plane VAO
+    unsigned int planeVAO, planeVBO;
+    glGenVertexArrays(1, &planeVAO);
+    glGenBuffers(1, &planeVBO);
+    glBindVertexArray(planeVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, planeVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(planeVertices), planeVertices, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+    glBindVertexArray(0);
 
     while (!glfwWindowShouldClose(window))
     {
@@ -214,21 +265,28 @@ int main()
 
 
 
-
+        shader.use();
         glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 1000.0f);
         glm::mat4 view = camera.GetViewMatrix();
         
+        
         shader.setMat4("projection", projection);
         shader.setMat4("view", view);
+        shader.setVec3("viewPos", camera.Position);
+        shader.setVec3("lightPos", lightPos);
+        shader.setInt("blinn", true);
+        // set light uniforms
+        glUniform3fv(glGetUniformLocation(shader.ID, "lightPositions"), 4, &lightPositions[0][0]);
+        glUniform3fv(glGetUniformLocation(shader.ID, "lightColors"), 4, &lightColors[0][0]);
+        shader.setVec3("viewPos", camera.Position);
+        shader.setInt("gamma", true);
 
-        shader.use();
 
         // add time component to geometry shader in the form of a uniform
         
 
         // draw model
-        // draw meteorites
-        shader.use();
+
         shader.setInt("texture_diffuse1", 0);
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, backpack.textures_loaded[0].id); // note: we also made the textures_loaded vector public (instead of private) from the model class.
@@ -238,32 +296,24 @@ int main()
             glDrawElementsInstanced(GL_TRIANGLES, static_cast<unsigned int>(backpack.meshes[i].indices.size()), GL_UNSIGNED_INT, 0, amount);
             glBindVertexArray(0);
         }
-        /*
-        // configure transformation matrices
-        for (int x = 0; x < 1; x++) {
-            for (int y = 0; y < 1; y++) {
-                for (int z = 0; z < 1; z++) {
+        
+        // draw objects
+        floorShader.use();
+        projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 1000.0f);
+        view = camera.GetViewMatrix();
+        floorShader.setMat4("projection", projection);
+        floorShader.setMat4("view", view);
+        // set light uniforms
+        glUniform3fv(glGetUniformLocation(floorShader.ID, "lightPositions"), 4, &lightPositions[0][0]);
+        glUniform3fv(glGetUniformLocation(floorShader.ID, "lightColors"), 4, &lightColors[0][0]);
+        floorShader.setVec3("viewPos", camera.Position);
+        floorShader.setInt("gamma", true);
+        // floor
+        glBindVertexArray(planeVAO);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, floorTexture);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
 
-                    model = glm::translate(model, glm::vec3(x * 5, y * 5, z * 5));
-                    shader.setMat4("model", model);
-                    backpack.Draw(shader);
-                }
-            }
-
-        }
-        */
-
-        /*
-        // then draw model with normal visualizing geometry shader
-        normalShader.use();
-        normalShader.setMat4("projection", projection);
-        normalShader.setMat4("view", view);
-        normalShader.setMat4("model", model);
-
-        backpack.Draw(normalShader);
-        */
-        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-        // -------------------------------------------------------------------------------
         glfwSwapBuffers(window);
         glfwPollEvents();
     }

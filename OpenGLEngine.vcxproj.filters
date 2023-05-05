@@ -110,5 +110,8 @@
     <None Include="normalVisualizationGeometry.glsl">
       <Filter>Shader Files</Filter>
     </None>
+    <None Include="floorShaderVertex.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
