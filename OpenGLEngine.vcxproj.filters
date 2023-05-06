@@ -113,5 +113,11 @@
     <None Include="floorShaderVertex.glsl">
       <Filter>Shader Files</Filter>
     </None>
+    <None Include="shadowMapDethVertex.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="shadowMapDethFragment.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

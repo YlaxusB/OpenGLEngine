@@ -168,6 +168,8 @@
     <None Include="normalVisualizationFragment.glsl" />
     <None Include="normalVisualizationGeometry.glsl" />
     <None Include="normalVisualizationVertex.glsl" />
+    <None Include="shadowMapDethFragment.glsl" />
+    <None Include="shadowMapDethVertex.glsl" />
     <None Include="singleColorFragment.glsl" />
     <None Include="skyboxFragment.glsl" />
     <None Include="skyboxVertex.glsl" />
