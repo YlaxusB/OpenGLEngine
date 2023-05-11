@@ -161,6 +161,13 @@
     <None Include="3.1.3.shadow_mapping_depth.fs" />
     <None Include="3.1.3.shadow_mapping_depth.vs" />
     <None Include="3.2.2.point_shadows_depth.gs" />
+    <None Include="7.bloom.fs" />
+    <None Include="7.bloom.vs" />
+    <None Include="7.bloom_final.fs" />
+    <None Include="7.bloom_final.vs" />
+    <None Include="7.blur.fs" />
+    <None Include="7.blur.vs" />
+    <None Include="7.light_box.fs" />
     <None Include="floorShaderVertex.glsl" />
     <None Include="frameBufferFragment.glsl" />
     <None Include="frameBufferVertex.glsl" />

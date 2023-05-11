@@ -140,5 +140,26 @@
     <None Include="hdrFragment.glsl">
       <Filter>Shader Files</Filter>
     </None>
+    <None Include="7.blur.vs">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="7.blur.fs">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="7.bloom_final.vs">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="7.bloom_final.fs">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="7.bloom.vs">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="7.light_box.fs">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="7.bloom.fs">
+      <Filter>Shader Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
