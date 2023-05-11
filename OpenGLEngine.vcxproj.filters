@@ -134,5 +134,11 @@
     <None Include="3.2.2.point_shadows_depth.gs">
       <Filter>Shader Files</Filter>
     </None>
+    <None Include="hdrVertex.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="hdrFragment.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

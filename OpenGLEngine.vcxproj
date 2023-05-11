@@ -168,6 +168,8 @@
     <None Include="colorVertex.glsl" />
     <None Include="fragmentShader.glsl" />
     <None Include="geometryShaders.glsl" />
+    <None Include="hdrFragment.glsl" />
+    <None Include="hdrVertex.glsl" />
     <None Include="light_cubeFragment.glsl" />
     <None Include="light_cubeVertex.glsl" />
     <None Include="normalVisualizationFragment.glsl" />
