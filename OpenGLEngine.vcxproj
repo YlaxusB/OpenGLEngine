@@ -168,6 +168,15 @@
     <None Include="7.blur.fs" />
     <None Include="7.blur.vs" />
     <None Include="7.light_box.fs" />
+    <None Include="8.2.deferred_light_box.fs" />
+    <None Include="8.2.deferred_light_box.vs" />
+    <None Include="8.2.deferred_shading.fs" />
+    <None Include="8.2.deferred_shading.vs" />
+    <None Include="8.2.g_buffer.fs" />
+    <None Include="8.2.g_buffer.vs" />
+    <None Include="9.ssao.fs" />
+    <None Include="9.ssao.vs" />
+    <None Include="9.ssao_blur.fs" />
     <None Include="floorShaderVertex.glsl" />
     <None Include="frameBufferFragment.glsl" />
     <None Include="frameBufferVertex.glsl" />

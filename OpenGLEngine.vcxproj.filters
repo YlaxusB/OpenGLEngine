@@ -16,6 +16,12 @@
     <Filter Include="Shader Files">
       <UniqueIdentifier>{532bdb8f-18c6-463a-9589-882a58f31401}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader Files\DeferredShadingShaders">
+      <UniqueIdentifier>{ebcee85f-f1f7-4bdc-ad5a-956924deaaba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader Files\SSAOshaders">
+      <UniqueIdentifier>{3e82cd51-5586-4ab7-9714-bd8b1e21af3f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -160,6 +166,33 @@
     </None>
     <None Include="7.bloom.fs">
       <Filter>Shader Files</Filter>
+    </None>
+    <None Include="8.2.g_buffer.vs">
+      <Filter>Shader Files\DeferredShadingShaders</Filter>
+    </None>
+    <None Include="8.2.g_buffer.fs">
+      <Filter>Shader Files\DeferredShadingShaders</Filter>
+    </None>
+    <None Include="8.2.deferred_shading.vs">
+      <Filter>Shader Files\DeferredShadingShaders</Filter>
+    </None>
+    <None Include="8.2.deferred_shading.fs">
+      <Filter>Shader Files\DeferredShadingShaders</Filter>
+    </None>
+    <None Include="8.2.deferred_light_box.vs">
+      <Filter>Shader Files\DeferredShadingShaders</Filter>
+    </None>
+    <None Include="8.2.deferred_light_box.fs">
+      <Filter>Shader Files\DeferredShadingShaders</Filter>
+    </None>
+    <None Include="9.ssao.vs">
+      <Filter>Shader Files\SSAOshaders</Filter>
+    </None>
+    <None Include="9.ssao.fs">
+      <Filter>Shader Files\SSAOshaders</Filter>
+    </None>
+    <None Include="9.ssao_blur.fs">
+      <Filter>Shader Files\SSAOshaders</Filter>
     </None>
   </ItemGroup>
 </Project>
